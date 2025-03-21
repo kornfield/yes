@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter for You</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            flex-direction: column;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .letter-container {
+            width: 280px;
+            background: #ffffff;
+            color: #000;
+            padding: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .letter-container.active {
+            display: block;
+        }
+
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #444;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+            background: #555;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .options, .final-message {
+            display: none;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #444;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: transform 0.2s;
+        }
+
+        a:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div id="page1" class="letter-container active">
+        <img src="attached_assets/abc-removebg-preview.png" alt="Cat" style="width: 100px; margin-bottom: 10px;">
+        <p>Hi Wellyda</p>
+        <div class="button-group">
+            <button class="button" onclick="nextPage(1)">Hi <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <div id="page2" class="letter-container">
+        <p><i class="fas fa-heart"></i> Hi Wellyda,
+
+            I know we haven’t talked in awhile and I appreciate you for giving me space. 
+            I realize what I said was just a moment of weakness for me, I became too attached to you and clearly expected more than I should have. 
+
+            I’m okay if we’re strictly just friends because I really did enjoy our time together and the memories we created even through a screen - from those minecraft signs we made to all the poop jokes we’d make, I miss that. 
+
+            It feels embarrassing to crawl back to you but I felt we had a genuine connection, we matched too perfectly and I’d hate to see that go away. I took the time to make this for you because I remember you saying you liked letters and this was the best I could do.</p>
+        <div class="button-group">
+            <button class="button" onclick="prevPage(2)"><i class="fas fa-arrow-left"></i> Back</button>
+            <button class="button" onclick="nextPage(2)">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <div id="page3" class="letter-container">
+        <p><i class="fas fa-star"></i> Se vc me aceitar de volta como amigo, clique em "Choose.</p>
+        <div class="button-group">
+            <button class="button" onclick="prevPage(3)"><i class="fas fa-arrow-left"></i> Back</button>
+            <button class="button" onclick="showOptions()">Choose <i class="fas fa-hand-pointer"></i></button>
+        </div>
+    </div>
+
+    <div id="options" class="options">
+        <button class="button" onclick="showFinalMessage()"><i class="fas fa-check"></i> Yes</button>
+        <button class="button" onclick="showFinalMessage()"><i class="fas fa-check"></i> Sim</button>
+    </div>
+
+    <div id="finalMessage" class="final-message">
+        <p>Let me know your decision by following me</p>
+        <a href="https://www.tiktok.com/@cay.ame" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+        <div class="button-group">
+            <button class="button" onclick="backToOptions()"><i class="fas fa-arrow-left"></i> Back</button>
+        </div>
+    </div>
+
+    <script>
+        function nextPage(current) {
+            document.getElementById("page" + current).classList.remove('active');
+            document.getElementById("page" + (current + 1)).classList.add('active');
+        }
+
+        function prevPage(current) {
+            document.getElementById("page" + current).classList.remove('active');
+            document.getElementById("page" + (current - 1)).classList.add('active');
+        }
+
+        function backToPage3() {
+            document.getElementById("options").style.display = "none";
+            document.getElementById("page3").classList.add('active');
+        }
+
+        function showOptions() {
+            document.getElementById("page3").classList.remove("active");
+            document.getElementById("options").style.display = "block";
+        }
+
+        function showFinalMessage() {
+            document.getElementById("options").style.display = "none";
+            document.getElementById("finalMessage").style.display = "block";
+        }
+
+        function backToOptions() {
+            document.getElementById("finalMessage").style.display = "none";
+            document.getElementById("options").style.display = "block";
+        }
+    </script>
+</body>
+</html>
